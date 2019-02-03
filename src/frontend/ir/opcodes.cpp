@@ -45,7 +45,7 @@ constexpr Type NZCV = Type::NZCVFlags;
 constexpr Type Cond = Type::Cond;
 constexpr Type Table = Type::Table;
 
-static std::vector<Meta> opcode_info = {
+static const std::vector<Meta> opcode_info = {
 #define OPCODE(name, type, ...) { #name, type, { __VA_ARGS__ } },
 #define A32OPC(name, type, ...) { #name, type, { __VA_ARGS__ } },
 #define A64OPC(name, type, ...) { #name, type, { __VA_ARGS__ } },
@@ -58,21 +58,21 @@ static std::vector<Meta> opcode_info = {
 } // namespace OpcodeInfo
 
 Type GetTypeOf(Opcode op) {
-    return OpcodeInfo::opcode_info[static_cast<size_t>(op)].type;
+    return OpcodeInfo::opcode_info.at(static_cast<size_t>(op)).type;
 }
 
 size_t GetNumArgsOf(Opcode op) {
-    return OpcodeInfo::opcode_info[static_cast<size_t>(op)].arg_types.size();
+    return OpcodeInfo::opcode_info.at(static_cast<size_t>(op)).arg_types.size();
 }
 
 Type GetArgTypeOf(Opcode op, size_t arg_index) {
-    return OpcodeInfo::opcode_info[static_cast<size_t>(op)].arg_types[arg_index];
+    return OpcodeInfo::opcode_info.at(static_cast<size_t>(op)).arg_types.at(arg_index);
 }
 
 std::string GetNameOf(Opcode op) {
     if (OpcodeInfo::opcode_info.size() <= static_cast<size_t>(op))
         return fmt::format("Unknown Opcode {}", static_cast<Opcode>(op));
-    return OpcodeInfo::opcode_info[static_cast<size_t>(op)].name;
+    return OpcodeInfo::opcode_info.at(static_cast<size_t>(op)).name;
 }
 
 std::ostream& operator<<(std::ostream& o, Opcode opcode) {
