@@ -18,7 +18,7 @@ namespace Dynarmic::Optimization {
 
 void VerificationPass(const IR::Block& block) {
     for (const auto& inst : block) {
-		const size_t num_args = inst.NumArgs();
+        const size_t num_args = inst.NumArgs();
         for (size_t i = 0; i < num_args; i++) {
             IR::Type t1 = inst.GetArg(i).GetType();
             IR::Type t2 = IR::GetArgTypeOf(inst.GetOpcode(), i);
@@ -31,8 +31,8 @@ void VerificationPass(const IR::Block& block) {
 
     std::map<IR::Inst*, size_t> actual_uses;
     for (const auto& inst : block) {
-		const size_t num_args = inst.NumArgs();
-		for (size_t i = 0; i < num_args; i++) {
+        const size_t num_args = inst.NumArgs();
+        for (size_t i = 0; i < num_args; i++) {
             if (!inst.GetArg(i).IsImmediate()) {
                 actual_uses[inst.GetArg(i).GetInst()]++;
             }
