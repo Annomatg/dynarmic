@@ -229,7 +229,8 @@ bool Argument::IsInMemory() const {
 
 RegAlloc::ArgumentInfo RegAlloc::GetArgumentInfo(IR::Inst* inst) {
     ArgumentInfo ret = {Argument{*this}, Argument{*this}, Argument{*this}, Argument{*this}};
-    for (size_t i = 0; i < inst->NumArgs(); i++) {
+	size_t numArgs = inst->NumArgs();
+    for (size_t i = 0; i < numArgs; i++) {
         const IR::Value& arg = inst->GetArg(i);
         ret[i].value = arg;
         if (!arg.IsImmediate() && !IsValuelessType(arg.GetType())) {
