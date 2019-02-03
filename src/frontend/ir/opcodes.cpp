@@ -45,7 +45,7 @@ constexpr Type NZCV = Type::NZCVFlags;
 constexpr Type Cond = Type::Cond;
 constexpr Type Table = Type::Table;
 
-static const std::vector<Meta> opcode_info = {
+static const std::vector<Meta> opcode_info {
 #define OPCODE(name, type, ...) { #name, type, { __VA_ARGS__ } },
 #define A32OPC(name, type, ...) { #name, type, { __VA_ARGS__ } },
 #define A64OPC(name, type, ...) { #name, type, { __VA_ARGS__ } },
